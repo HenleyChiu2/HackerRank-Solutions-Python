@@ -10,17 +10,14 @@ import sys
 def howManyGames(p, d, m, s):
     # Return the number of games you can buy
     count = 0
-    if s < p:
-        return count
 
-    count += 1
-    s -= p
-    while s >= p:
-        p -= d
-        if p < m:
-            p = m
+    while s > 0:
         count += 1
         s -= p
+        p = max(p - d, m)
+
+    if s != 0:
+        count -= 1
 
     return count
 
